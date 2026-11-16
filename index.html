@@ -8,7 +8,7 @@
 <meta property="og:title" content="E-Kaza Interiores | Salas de Jantar">
 <meta property="og:description" content="Especialistas em salas de jantar há 14 anos. Mesas, cadeiras e tendências direto da fábrica.">
 <meta property="og:image" content="ekaza_showroom.jpg">
-<meta name="theme-color" content="#2B1F17">
+<meta name="theme-color" content="#F4ECE1">
 <link rel="icon" href="ekaza_logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,14 +38,17 @@ h2 em{font-style:italic;color:var(--caramel)}
 /* NAV */
 nav{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:1.1rem 4vw;transition:.4s}
 nav.solid{background:rgba(43,31,23,.92);backdrop-filter:blur(10px);padding:.75rem 4vw}
-.nav-logo{font-family:var(--serif);color:var(--cream);font-size:1.5rem;letter-spacing:.04em;opacity:0;transition:.4s}
+.nav-logo{font-family:var(--serif);color:var(--deep);font-size:1.5rem;letter-spacing:.04em;opacity:0;transition:.4s}
 nav.solid .nav-logo,nav.show-logo .nav-logo{opacity:1}
+nav.solid .nav-logo,nav.solid .nav-links a,nav.solid .burger{color:var(--cream)}
+nav .nav-links a.btn{color:var(--white)}
+@media(max-width:860px){.nav-links a{color:var(--cream)}.burger.x{color:var(--cream)!important}}
 .nav-logo span{color:var(--gold)}
 .nav-links{display:flex;gap:2rem;align-items:center}
-.nav-links a{color:var(--cream);font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.nav-links a{color:var(--deep);font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
 .nav-links a:hover{opacity:1;color:var(--gold)}
 .nav-links .btn{padding:.6rem 1.2rem;opacity:1}
-.burger{display:none;background:none;border:0;color:var(--cream);font-size:1.6rem;cursor:pointer}
+.burger{display:none;background:none;border:0;color:var(--deep);font-size:1.6rem;cursor:pointer}
 @media(max-width:860px){
   .nav-links{position:fixed;inset:0;background:var(--deep);flex-direction:column;justify-content:center;gap:2rem;transform:translateX(100%);transition:.4s}
   .nav-links.open{transform:none}
@@ -53,18 +56,41 @@ nav.solid .nav-logo,nav.show-logo .nav-logo{opacity:1}
   .burger{display:block;z-index:60}
 }
 
-/* HERO SCROLL */
-#hero{height:420vh;position:relative;background:var(--deep)}
-.hero-stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
-#bgBlur{position:absolute;inset:-40px;width:calc(100% + 80px);height:calc(100% + 80px);filter:blur(28px) brightness(.55) saturate(1.1);object-fit:cover}
-.hero-frame{position:absolute;inset:0;display:flex;justify-content:center;align-items:center}
-#heroVideo{height:100%;width:auto;max-width:none;object-fit:cover;box-shadow:0 0 120px rgba(0,0,0,.55)}
-@media(max-aspect-ratio:3/4){#heroVideo{width:100%;height:100%}}
-.hero-shade{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(43,31,23,.15),rgba(43,31,23,.75));opacity:0;pointer-events:none}
-.hero-hint{position:absolute;bottom:6vh;left:50%;transform:translateX(-50%);color:var(--cream);text-align:center;font-size:.75rem;letter-spacing:.35em;text-transform:uppercase;transition:opacity .4s}
-.hero-hint i{display:block;width:1px;height:46px;margin:12px auto 0;background:linear-gradient(var(--gold),transparent);animation:drop 1.8s infinite}
+/* HERO SCROLL — cadeira girando */
+#hero{height:460vh;position:relative;background:#F4ECE1}
+.hero-stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:radial-gradient(ellipse 70% 60% at 50% 55%,#FFFDF9 0%,#F4ECE1 70%,#EADCC9 100%)}
+.hero-stick::after{content:"";position:absolute;left:50%;bottom:9vh;width:min(46vh,70vw);height:5vh;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(107,74,46,.18),transparent 70%);pointer-events:none;opacity:var(--floor,1)}
+.chair-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;mix-blend-mode:multiply}
+#chairCanvas{height:min(78vh,128vw);width:auto;aspect-ratio:3/4;margin-top:4vh}
+.hero-copy{position:absolute;left:6vw;top:50%;transform:translateY(-50%);max-width:30vw;color:var(--deep)}
+.hero-copy .eyebrow{display:block;margin-bottom:1rem}
+.hero-copy h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.2rem,4.2vw,4rem);line-height:1.05}
+.hero-copy h1 em{color:var(--caramel)}
+.hero-copy p{margin-top:1.2rem;color:var(--muted);line-height:1.7;max-width:340px}
+.swatches{position:absolute;right:6vw;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:1.4rem;align-items:flex-end}
+.sw{display:flex;align-items:center;gap:.9rem;color:var(--muted);font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;transition:color .4s}
+.sw i{width:34px;height:34px;border-radius:50%;border:2px solid transparent;box-shadow:inset 0 0 0 3px #F4ECE1;transition:.4s;flex:none}
+.sw.on{color:var(--deep);font-weight:500}
+.sw.on i{border-color:var(--deep);transform:scale(1.18)}
+.color-name{position:absolute;left:50%;bottom:5vh;transform:translateX(-50%);text-align:center;color:var(--deep)}
+.color-name small{display:block;font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;color:var(--caramel)}
+.color-name strong{font-family:var(--serif);font-weight:400;font-size:clamp(1.4rem,2.4vw,2rem);font-style:italic}
+.hero-progress{position:absolute;left:50%;top:calc(50% + min(39vh,64vw) + 2vh);display:none}
+.hero-hint{position:absolute;bottom:5vh;right:6vw;color:var(--brown);text-align:center;font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;transition:opacity .4s}
+.hero-hint i{display:block;width:1px;height:46px;margin:12px auto 0;background:linear-gradient(var(--caramel),transparent);animation:drop 1.8s infinite}
 @keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
-.hero-loading{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--sand);font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;transition:opacity .5s}
+.hero-fade{will-change:opacity}
+@media(max-width:860px){
+  .hero-copy{left:0;right:0;top:11vh;transform:none;max-width:none;text-align:center;padding:0 7vw}
+  .hero-copy h1{font-size:clamp(1.9rem,8vw,2.6rem)}
+  .hero-copy p,.hero-copy .eyebrow{display:none}
+  #chairCanvas{height:min(56vh,110vw);margin-top:10vh}
+  .swatches{right:auto;left:50%;top:auto;bottom:13vh;transform:translateX(-50%);flex-direction:row;gap:1.1rem}
+  .sw span{display:none}
+  .color-name{bottom:4.5vh}
+  .hero-stick::after{bottom:18vh}
+  .hero-hint{display:none}
+}
 
 /* 3D LOGO */
 .logo-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;perspective:1100px;pointer-events:none}
@@ -74,12 +100,12 @@ nav.solid .nav-logo,nav.show-logo .nav-logo{opacity:1}
 .logo-word{font-family:var(--serif);font-size:min(118px,17vw);margin-top:.35em;line-height:1;letter-spacing:.01em;font-weight:500;white-space:nowrap}
 .logo-word b{font-weight:500;display:inline-block;transform:translateY(-.08em);margin:0 .03em;font-size:.6em}
 .logo-sub{font-family:var(--sans);font-size:min(16px,2.6vw);letter-spacing:.55em;margin-top:.6em;padding-left:.55em;font-weight:500}
-.logo-layer.back{color:#5a3c24}
-.logo-layer.back svg path{stroke:#5a3c24}
-.logo-layer.front{color:#F3E2C6;text-shadow:0 0 30px rgba(201,164,106,.35)}
-.logo-layer.front .logo-word{background:linear-gradient(180deg,#FFF3DC 0%,#E7C78F 45%,#B98D5F 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo-layer.back{color:#3d2a1a}
+.logo-layer.back svg path{stroke:#3d2a1a}
+.logo-layer.front{color:#8A6440}
+.logo-layer.front .logo-word{background:linear-gradient(180deg,#D9B67C 0%,#A87A4A 50%,#6B4A2E 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .logo-layer.front svg path{stroke:url(#goldGrad)}
-.logo-tag{position:absolute;bottom:13vh;left:0;right:0;text-align:center;color:var(--cream);opacity:0;padding:0 6vw}
+.logo-tag{position:absolute;bottom:13vh;left:0;right:0;text-align:center;color:var(--deep);opacity:0;padding:0 6vw}
 .logo-tag p{font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,2.4vw,1.7rem)}
 .logo-tag .btn{margin-top:1.4rem;pointer-events:auto}
 
@@ -221,32 +247,34 @@ footer a:hover{color:var(--gold)}
   </div>
 </nav>
 
-<!-- HERO: vídeo controlado pelo scroll + logo 3D -->
+<!-- HERO: cadeira girando no scroll + troca de tecido + logo 3D -->
 <section id="hero" style="padding:0">
   <div class="hero-stick">
-    <canvas id="bgBlur"></canvas>
-    <div class="hero-frame">
-      <video id="heroVideo" muted playsinline preload="auto" poster="hero-poster.jpg"></video>
+    <div class="hero-copy hero-fade">
+      <span class="eyebrow">Personalize do seu jeito</span>
+      <h1>Uma cadeira, <em>infinitas</em> possibilidades.</h1>
+      <p>Escolha o tecido, a cor e o acabamento. Role a página e veja a mesma peça ganhar uma nova personalidade.</p>
     </div>
-    <div class="hero-shade" id="heroShade"></div>
-    <div class="hero-loading" id="heroLoading">Carregando…</div>
+    <div class="chair-wrap" id="chairWrap"><canvas id="chairCanvas" width="768" height="1024" aria-label="Cadeira estofada girando e trocando a cor do tecido"></canvas></div>
+    <div class="swatches hero-fade" id="swatches"></div>
+    <div class="color-name hero-fade"><small>Tecido</small><strong id="colorName">Linho Natural</strong></div>
 
     <div class="logo-stage">
       <div class="logo3d" id="logo3d"></div>
     </div>
     <div class="logo-tag" id="logoTag">
       <p>Especialistas em salas de jantar há 14 anos</p>
-      <a href="#sobre" class="btn btn-line" style="color:var(--cream)">Conheça a E-Kaza</a>
+      <a href="#sobre" class="btn btn-line" style="color:var(--deep)">Conheça a E-Kaza</a>
     </div>
 
-    <div class="hero-hint" id="heroHint">Role para descobrir<i></i></div>
+    <div class="hero-hint" id="heroHint">Role para girar<i></i></div>
   </div>
 </section>
 
 <svg width="0" height="0" style="position:absolute">
   <defs>
     <linearGradient id="goldGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#FFF3DC"/><stop offset=".5" stop-color="#E7C78F"/><stop offset="1" stop-color="#B98D5F"/>
+      <stop offset="0" stop-color="#D9B67C"/><stop offset=".5" stop-color="#A87A4A"/><stop offset="1" stop-color="#6B4A2E"/>
     </linearGradient>
   </defs>
 </svg>
@@ -438,8 +466,9 @@ document.getElementById('yr').textContent = new Date().getFullYear();
 
 /* ---------- MENU ---------- */
 const nav = document.getElementById('nav'), navLinks = document.getElementById('navLinks');
-document.getElementById('burger').onclick = () => navLinks.classList.toggle('open');
-navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+const burger = document.getElementById('burger');
+burger.onclick = () => { const o = navLinks.classList.toggle('open'); burger.classList.toggle('x', o); burger.textContent = o ? '✕' : '☰'; };
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { navLinks.classList.remove('open'); burger.classList.remove('x'); burger.textContent = '☰'; }));
 
 /* ---------- LOGO 3D (camadas extrudadas) ---------- */
 const logo3d = document.getElementById('logo3d');
@@ -460,58 +489,84 @@ for (let i = 0; i < LAYERS; i++) {
   logo3d.appendChild(l);
 }
 
-/* ---------- HERO: vídeo no scroll ---------- */
+/* ---------- HERO: cadeira 360° no scroll ---------- */
 const hero = document.getElementById('hero');
-const video = document.getElementById('heroVideo');
-const bg = document.getElementById('bgBlur'), bgx = bg.getContext('2d');
-const shade = document.getElementById('heroShade'), hint = document.getElementById('heroHint');
-const tag = document.getElementById('logoTag'), loading = document.getElementById('heroLoading');
-bg.width = 160; bg.height = 90;
-let duration = 0, target = 0, current = 0, ready = false;
-
-fetch('hero.mp4').then(r => r.blob()).then(b => {
-  video.src = URL.createObjectURL(b);
-}).catch(() => { video.src = 'hero.mp4'; });
-
-video.addEventListener('loadedmetadata', () => { duration = video.duration; ready = true; loading.style.opacity = 0; drawBg(); });
-video.addEventListener('seeked', drawBg);
-function drawBg(){ try { bgx.drawImage(video, 0, 0, bg.width, bg.height); } catch(e){} }
-// iOS: precisa "ativar" o vídeo com um toque
-const unlock = () => { video.play().then(() => video.pause()).catch(()=>{}); window.removeEventListener('touchstart', unlock); };
-window.addEventListener('touchstart', unlock, { passive: true });
+const hint = document.getElementById('heroHint'), tag = document.getElementById('logoTag');
+const chairWrap = document.getElementById('chairWrap'), canvas = document.getElementById('chairCanvas'), ctx = canvas.getContext('2d');
+const fades = document.querySelectorAll('.hero-fade'), colorName = document.getElementById('colorName');
+const stick = document.querySelector('.hero-stick');
+const FRAMES = 8, FW = 384, FH = 512, TURNS = 2;
+const COLORS = [
+  { id: 'linho', nome: 'Linho Natural', hex: '#D9D1C7' },
+  { id: 'terracota', nome: 'Terracota', hex: '#A8573A' },
+  { id: 'oliva', nome: 'Verde Oliva', hex: '#6B7350' }
+];
+const sheets = COLORS.map(c => { const im = new Image(); im.src = `cadeira-${c.id}.jpg`; return im; });
+const swWrap = document.getElementById('swatches');
+COLORS.forEach((c, i) => { swWrap.insertAdjacentHTML('beforeend', `<div class="sw" data-i="${i}"><span>${c.nome}</span><i style="background:${c.hex}"></i></div>`); });
+const swEls = [...swWrap.children];
 
 const clamp = (v, a=0, b=1) => Math.min(b, Math.max(a, v));
 const ease = t => 1 - Math.pow(1 - t, 3);
 const map = (p, a, b) => clamp((p - a) / (b - a));
-
 function heroProgress(){
   const r = hero.getBoundingClientRect();
-  const total = hero.offsetHeight - innerHeight;
-  return clamp(-r.top / total);
+  return clamp(-r.top / (hero.offsetHeight - innerHeight));
 }
 
-function tick(){
+let curFrame = 0, prevFrame = 0, swapAt = 0, lastKey = '';
+function drawFrame(frame, colorPos, alpha){
+  // colorPos: 0..2 contínuo → mistura entre dois tecidos vizinhos
+  const a = Math.floor(colorPos), b = Math.min(a + 1, COLORS.length - 1), m = colorPos - a;
+  ctx.globalAlpha = alpha;
+  if (sheets[a].complete) ctx.drawImage(sheets[a], frame * FW, 0, FW, FH, 0, 0, canvas.width, canvas.height);
+  if (m > 0 && sheets[b].complete){ ctx.globalAlpha = alpha * m; ctx.drawImage(sheets[b], frame * FW, 0, FW, FH, 0, 0, canvas.width, canvas.height); }
+  ctx.globalAlpha = 1;
+}
+
+const ROT_END = .74;  // giro + troca de cor ocupam 0 → 0.74 do scroll
+function tick(now){
   const p = heroProgress();
-  // vídeo ocupa 0 → 0.78 do scroll
-  if (ready) {
-    target = map(p, 0, .78) * (duration - 0.05);
-    current += (target - current) * 0.18;
-    if (Math.abs(video.currentTime - current) > 0.02 && !video.seeking) video.currentTime = current;
+  const rp = map(p, 0, ROT_END);
+  // giro: 2 voltas completas
+  const f = Math.min(Math.floor(rp * FRAMES * TURNS), FRAMES * TURNS - 1) % FRAMES;
+  if (f !== curFrame){ prevFrame = curFrame; curFrame = f; swapAt = now; }
+  const t = clamp((now - swapAt) / 140);
+  // cor: três fases, transição suave entre elas
+  const seg = rp * COLORS.length; const idx = Math.min(Math.floor(seg), COLORS.length - 1);
+  const local = seg - idx; let colorPos = idx;
+  if (idx < COLORS.length - 1 && local > .8) colorPos = idx + (local - .8) / .2;
+  const key = curFrame + '|' + prevFrame + '|' + t.toFixed(2) + '|' + colorPos.toFixed(3);
+  if (key !== lastKey){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (t < 1) drawFrame(prevFrame, colorPos, 1);
+    drawFrame(curFrame, colorPos, t < 1 ? t : 1);
+    lastKey = key;
   }
+  const active = Math.round(colorPos);
+  swEls.forEach((el, i) => el.classList.toggle('on', i === active));
+  if (colorName.textContent !== COLORS[active].nome) colorName.textContent = COLORS[active].nome;
+
   hint.style.opacity = p > .03 ? 0 : 1;
 
-  // logo 3D surge a partir de 0.55
-  const lp = ease(map(p, .55, .9));
-  shade.style.opacity = lp;
+  // saída da cadeira e entrada da logo 3D
+  const out = ease(map(p, ROT_END - .02, .86));
+  chairWrap.style.opacity = 1 - out;
+  chairWrap.style.transform = `translateY(${out * 8}vh) scale(${1 - out * .25})`;
+  fades.forEach(el => el.style.opacity = 1 - map(p, ROT_END - .04, ROT_END + .04));
+  stick.style.setProperty('--floor', 1 - out);
+  const lp = ease(map(p, .76, .94));
   const ry = (1 - lp) * -75, rx = (1 - lp) * 25, s = .55 + lp * .45, tz = (1 - lp) * -400;
-  logo3d.style.opacity = map(p, .55, .66);
-  logo3d.style.transform = `translateZ(${tz}px) rotateX(${rx}deg) rotateY(${ry + Math.sin(p*6)*2*lp}deg) scale(${s})`;
-  tag.style.opacity = map(p, .82, .95);
-  tag.style.transform = `translateY(${(1 - map(p, .82, .95)) * 20}px)`;
+  logo3d.style.opacity = map(p, .76, .84);
+  logo3d.style.transform = `translateZ(${tz}px) rotateX(${rx}deg) rotateY(${ry}deg) scale(${s})`;
+  tag.style.opacity = map(p, .88, .97);
+  tag.style.transform = `translateY(${(1 - map(p, .88, .97)) * 20}px)`;
+  tag.style.pointerEvents = p > .9 ? 'auto' : 'none';
 
   nav.classList.toggle('solid', scrollY > hero.offsetHeight - innerHeight * 0.9);
   requestAnimationFrame(tick);
 }
+sheets[0].onload = () => { lastKey = ''; };
 requestAnimationFrame(tick);
 
 /* ---------- REVEAL ---------- */
